@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html  id="main">
+{{>head}}
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-4">
+            <form id="sunForm" method="post">
+
+                <div class="form-group">
+
+                    <div class="row">
+
+                        <div class="col-6 myClass">
+                            <label for="dataini">
+                                <h6>Data/Hora inicial:</h6>
+                            </label>
+
+                            <input type="datetime" required class="form-control form-control-lg" id="dataini"
+                                name="dataini" placeholder="Digite no formato: dd/mm/aaaa hh:mm:ss">
+                        </div>
+                        <div class="col-6 myClass">
+                            <label for="datafim">
+                                <h6>Data/Hora final:</h6>
+                            </label>
+
+                            <input type="datetime" required class="form-control form-control-lg" id="datafim"
+                                name="datafim" placeholder="Digite  no formato: dd/mm/aaaa hh:mm:ss">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-6 myClass">
+                            <label for="latitude">
+                                <h6>Latitude:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="latitude"
+                                name="latitude" placeholder="Digite a latitude">
+                        </div>
+                        <div class="col-6 myClass">
+
+                            <label for="logitude">
+                                <h6>Longitude:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="longitude"
+                                name="longitude" placeholder="Digite a longitude">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-6 myClass">
+                            <label for="horaini">
+                                <h6>Hora inicial:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="horaini" name="horaini"
+                                placeholder="Digite a hora inicial">
+                        </div>
+                        <div class="col-6 myClass">
+
+                            <label for="horafim">
+                                <h6>Hora Final:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="horafim" name="horafim"
+                                placeholder="Digite a hora final">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-4 myClass">
+                            <label for="sAltura">
+                                <h6>Altura do obstáculo:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="sAltura" name="sAltura"
+                                placeholder="Digite a altura do obstáculo">
+                        </div>
+                        <div class="col-4 myClass">
+                            <label for="limElev">
+                                <h6>Elevação mínima solar:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="limElev" name="limElev"
+                                placeholder="Digite a menor elevação a ser considerada">
+                        </div>
+                        <div class="col-4 myClass">
+                            <label for="passo">
+                                <h6>Passo:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="passo" name="passo"
+                                placeholder="Digite o passo em minutos para amostragem">
+
+                        </div>
+                    </div>
+                </div>
+                <button id="submit" type="submit" type="button" class="btn btn-primary btn-center">Executar</button>
+            </form>
+
+        </div>
+
+        <div class="col-12">
+            <div class="chartjs-wrapper">
+                <canvas id="chartjs-3" class="chartjs" height="500em"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script>
+    new Chart(document.getElementById("chartjs-3"),
+      {
+        "type": "radar",
+        "data": {
+          "labels": [
+            {{#each sunArray}}
+            "{{sDirecao}}",
+            {{/each}}
+                    ],
+      "datasets": [
+        {
+          "label": "Sombreamento Solar",
+          "data": [
+            {{#each sunArray}}
+            {{sComprimento}},
+        {{/each}}
+      ],
+      "fill": true,
+      "backgroundColor": "rgba(255, 99, 132, 0.2)",
+      "borderColor": "rgb(255, 99, 132)",
+      "pointBackgroundColor": "rgb(255, 99, 132)",
+      "pointBorderColor": "#fff",
+      "pointHoverBackgroundColor": "#fff",
+      "pointHoverBorderColor": "rgb(255, 99, 132)"
+                        }]
+                }, "options": { "elements": { "line": { "tension": 0, "borderWidth": 3 } } }
+            });
+  </script>
+</body>
+
+
+
+</html>
