@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { SunInput } from './suninput.interface';
-import { SunInputDto } from './sunInput.dto';
+import { SunInput } from '../sun/suninput.interface';
+import { SunInputDto } from '../sun/suninput.dto';
 import { Model } from 'mongoose';
 import * as Sun from 'suncalc';
 
