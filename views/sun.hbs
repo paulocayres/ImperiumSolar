@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html  id="main">
+<html id="main">
 {{>head}}
 
 
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-4">
+        <div class="col-12">
             <form id="sunForm" method="post">
 
                 <div class="form-group">
@@ -98,43 +98,46 @@
 
         </div>
 
+
+    </div>
+    <div class="row">
         <div class="col-12">
             <div class="chartjs-wrapper">
-                <canvas id="chartjs-3" class="chartjs" height="500em"></canvas>
+                <canvas id="chartjs-3" class="chartjs" width="100%"></canvas>
             </div>
         </div>
     </div>
 </div>
 
-  <script>
+<script>
     new Chart(document.getElementById("chartjs-3"),
-      {
-        "type": "radar",
-        "data": {
-          "labels": [
-            {{#each sunArray}}
+        {
+            "type": "radar",
+            "data": {
+                "labels": [
+                    {{#each sunArray}}
             "{{sDirecao}}",
             {{/each}}
                     ],
-      "datasets": [
-        {
-          "label": "Sombreamento Solar",
-          "data": [
-            {{#each sunArray}}
+        "datasets": [
+            {
+                "label": "Sombreamento Solar",
+                "data": [
+                    {{#each sunArray}}
             {{sComprimento}},
-        {{/each}}
-      ],
-      "fill": true,
-      "backgroundColor": "rgba(255, 99, 132, 0.2)",
-      "borderColor": "rgb(255, 99, 132)",
-      "pointBackgroundColor": "rgb(255, 99, 132)",
-      "pointBorderColor": "#fff",
-      "pointHoverBackgroundColor": "#fff",
-      "pointHoverBorderColor": "rgb(255, 99, 132)"
+            {{/each}}
+        ],
+        "fill": true,
+        "backgroundColor": "rgba(255, 99, 132, 0.2)",
+        "borderColor": "rgb(255, 99, 132)",
+        "pointBackgroundColor": "rgb(255, 99, 132)",
+        "pointBorderColor": "#fff",
+        "pointHoverBackgroundColor": "#fff",
+        "pointHoverBorderColor": "rgb(255, 99, 132)"
                         }]
                 }, "options": { "elements": { "line": { "tension": 0, "borderWidth": 3 } } }
             });
-  </script>
+</script>
 </body>
 
 
