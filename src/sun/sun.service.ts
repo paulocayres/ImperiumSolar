@@ -13,21 +13,21 @@ export class SunService {
     ) { }
 
 
-    async setSunPositions(sunInput: SunInputDto): Promise<SunInput[]> {
+    async setSunPositions(sunInputDto: SunInputDto): Promise<SunInput[]> {
 
-        const dataini = new Date(sunInput.dataini).toString();
-        const times = new Date(sunInput.dataini);
-        const dtf = new Date(sunInput.datafim);
-        const datafim = new Date(sunInput.datafim).toString();
-        const horaini = sunInput.horaini;
-        const horafim = sunInput.horafim;
-        const lati: any = sunInput.latitude;
-        const longi: any = sunInput.longitude;
-        const latitude = sunInput.latitude;
-        const longitude = sunInput.longitude;
-        const sAltura = sunInput.sAltura;
-        const limElev = sunInput.limElev;
-        const passo = sunInput.passo;
+        const dataini = new Date(sunInputDto.dataini).toString();
+        const times = new Date(sunInputDto.dataini);
+        const dtf = new Date(sunInputDto.datafim);
+        const datafim = new Date(sunInputDto.datafim).toString();
+        const horaini = sunInputDto.horaini;
+        const horafim = sunInputDto.horafim;
+        const lati: any = sunInputDto.latitude;
+        const longi: any = sunInputDto.longitude;
+        const latitude = sunInputDto.latitude;
+        const longitude = sunInputDto.longitude;
+        const sAltura = sunInputDto.sAltura;
+        const limElev = sunInputDto.limElev;
+        const passo = sunInputDto.passo;
         let positions: SunInput[] = [];
         let sun: any;
         let nAzimute: number;
@@ -40,6 +40,7 @@ export class SunService {
         let sDirecao: string;
         let sComprimento: string;
         let time: string;
+        let sunInputDto2: SunInputDto;
 
         this.sunModel.collection.drop();
         while (times < dtf) {
@@ -61,14 +62,18 @@ export class SunService {
                 time = times.toString();
                 // positions.push({ dataini, datafim, time, latitude, longitude, azimute, elevacao,_
                 // sComprimento, sDirecao, sAltura, limElev, passo });
-                sunInput = {
+                sunInputDto = {
                     dataini, datafim, time,
                     latitude, longitude,
                     azimute, elevacao,
                     sComprimento, sDirecao, sAltura,
                     limElev, passo, horaini, horafim,
                 };
-                positions.push(sunInput);
+                positions.push(sunInputDto);
+/*                 const createdSun = new this.sunModel(sunInputDto);
+                await createdSun.save(); */
+
+                //this.sunModel.save(sunInputDto);
                 // createdSun.save(sunInput);
                 // createdSun.save();
             }
