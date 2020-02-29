@@ -13,7 +13,7 @@ export class SunService {
     ) { }
 
 
-    async setSunPositions(sunInputDto: SunInputDto): Promise<SunInput[]> {
+    setSunPositions(sunInputDto: SunInputDto) {
 
         const dataini = new Date(sunInputDto.dataini).toString();
         const times = new Date(sunInputDto.dataini);
@@ -40,7 +40,6 @@ export class SunService {
         let sDirecao: string;
         let sComprimento: string;
         let time: string;
-        let sunInputDto2: SunInputDto;
 
         this.sunModel.collection.drop();
         while (times < dtf) {
@@ -80,10 +79,8 @@ export class SunService {
             times.setMinutes(times.getMinutes() + parseFloat(passo));
 
         }
-        await this.sunModel.insertMany(positions);
-        
-        return positions;
-        
+        this.sunModel.insertMany(positions);
+
         
     }
 
