@@ -100,7 +100,7 @@
 
 
     </div>
-    <div class="row">
+    <div class="row" id="canvas">
         <div class="col-12">
             <div class="chartjs-wrapper">
                 <canvas id="chartjs-3" class="chartjs" width="500" height="500"></canvas>
@@ -108,6 +108,34 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="sunModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Aguarde</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align: center">
+        Os cálculos estão sendo realizados. <br>
+        Em alguns segundos o gráfico será exibido.
+      </div>
+      <div id="timer" style="text-align: center">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 <script>
     new Chart(document.getElementById("chartjs-3"),
@@ -138,6 +166,43 @@
                 }, "options": { "elements": { "line": { "tension": 0, "borderWidth": 3 } } }
             });
 </script>
+
+<script>
+    var pathname = window.location.pathname;
+    
+    if (pathname == '/sun/sunpost'){
+        document.getElementById('canvas').style.visibility = 'hidden';
+        document.getElementById('logo').src = '../../imperium.png';
+        //$('#sunModal').modal('show');
+        $('#sunModal').modal('toggle');
+
+         var i = 0;
+        setInterval( function(){
+            i++;
+            var texto = '';
+            document.getElementById('timer').innerHTML = i;
+        },
+            1000
+        );
+
+        setTimeout(function(){
+            window.location.href = '/sun/sunget';
+        },
+         29000);
+
+    } else if (pathname == '/sun' || pathname == '/sun/'){
+        document.getElementById('canvas').style.visibility = 'hidden';
+    } else if (pathname == '/sun/sunget'){
+        document.getElementById('logo').src = '../../imperium.png';
+        document.getElementById('canvas').style.visibility = 'visible';
+    }
+
+</script>
+
+
+
+
+
 </body>
 
 

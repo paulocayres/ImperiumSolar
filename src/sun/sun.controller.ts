@@ -9,26 +9,26 @@ export class SunController {
     constructor(private sunService: SunService) { }
 
 
+
+
     @Get()
     @Render('sun')
-    async get(): Promise<object> {
-            const retorno = await this.sunService.getSunInputs();
-            return { sunArray: retorno };
-        //Logger.log("Controller " + JSON.stringify(retorno));
-        
+    async get() {
+            return '';
     }
 
+    @Get('sunget')
+    @Render('sun')
+    async getSun(): Promise<object> {
+            const retorno = await this.sunService.getSunInputs();
+            return { sunArray: retorno };        
+    }
 
 
 
     @Post('sunpost')
-    @Redirect('../sun')
-    async postSun(@Body() sunInput: SunInputDto, @Res() res) {
-        //await this.sunService.setSunPositions(sunInput);
+    @Render('sun')
+    async postSun(@Body() sunInput: SunInputDto) {
         this.sunService.setSunPositions(sunInput);
     }
-
-
-
-
 }
