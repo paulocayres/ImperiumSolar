@@ -18,33 +18,14 @@ export class SunController {
         
     }
 
-    @Get('sunpost')
-    //@Render('sun')
-    @Redirect('../sun')
-    async getsun() {
-            const retorno = await this.sunService.getSunInputs();
-        //Logger.log("Controller " + JSON.stringify(retorno));
-        
-    }
 
 
 
     @Post('sunpost')
-    //@Render('sun')
-    @Redirect('../sun/sunpost')
+    @Redirect('../sun')
     async postSun(@Body() sunInput: SunInputDto, @Res() res) {
         //await this.sunService.setSunPositions(sunInput);
         this.sunService.setSunPositions(sunInput);
-        Logger.log('saiu');
-/*         res.end();
-        res.header({'Content-Type': 'application/json',
-        'Accept': 'application/json'});
-        res.redirect('sun'); */
-        //Logger.log(JSON.stringify(temp[0]));
-        //const retorno = await this.sunService.getSunInputs();
-        //Logger.log(JSON.stringify(retorno));
-        //return { sunArray: retorno };
-
     }
 
 
