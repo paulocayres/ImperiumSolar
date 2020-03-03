@@ -81,7 +81,7 @@ export class SunService {
             times.setMinutes(times.getMinutes() + parseFloat(passo));
         }
 
-        for (var i = 0; i <= 359; i++) {
+        for (var i =359; i >=0 ; i--) {
                 var pos = positions[i];
                 positions_consolidada[i] = pos[0];
                 for (var j = 1; j < pos.length; j++) {
@@ -89,6 +89,7 @@ export class SunService {
                             positions_consolidada[i] = pos[j];
                         }
                 }
+                positions.pop();
         }
 
         for (var i = 0; i <= 359; i++) {
