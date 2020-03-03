@@ -105,7 +105,7 @@ export class SunService {
             }
         }
 
-        this.sunModel.insertMany(positions_consolidada);
+        await this.sunModel.insertMany(positions_consolidada);
         return positions_consolidada;
 
 

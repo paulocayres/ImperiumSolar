@@ -17,11 +17,14 @@
                     <input type="hidden" required class="form-control form-control-lg" id="datafim"
                                 name="datafim" placeholder="Digite  no formato: dd/mm/aaaa hh:mm:ss" value="01/01/2020 00:00:00">
                     <input type="hidden" required class="form-control form-control-lg" id="horaini" name="horaini"
-                                placeholder="Digite a hora inicial" value="7">
+                                placeholder="Digite a hora inicial" value="5">
                     <input type="hidden" required class="form-control form-control-lg" id="horafim" name="horafim"
-                                placeholder="Digite a hora final" value="18">
+                                placeholder="Digite a hora final" value="20">
                     <input type="hidden" required class="form-control form-control-lg" id="passo" name="passo"
                                 placeholder="Digite o passo em minutos para amostragem" value="5">
+
+                    <input type="hidden" required class="form-control form-control-lg" id="limElev" name="limElev"
+                                placeholder="Digite a menor elevação a ser considerada" value="15">
 {{!--                     <div class="row">
 
                         <div class="col-6 myClass">
@@ -48,20 +51,27 @@
 
 
                     <div class="row">
-                        <div class="col-6 myClass">
+                        <div class="col-4 myClass">
                             <label for="latitude">
                                 <h6>Latitude:</h6>
                             </label>
                             <input type="text" required class="form-control form-control-lg" id="latitude"
                                 name="latitude" placeholder="Digite a latitude">
                         </div>
-                        <div class="col-6 myClass">
+                        <div class="col-4 myClass">
 
                             <label for="logitude">
                                 <h6>Longitude:</h6>
                             </label>
                             <input type="text" required class="form-control form-control-lg" id="longitude"
                                 name="longitude" placeholder="Digite a longitude">
+                        </div>
+                        <div class="col-4 myClass">
+                            <label for="sAltura">
+                                <h6>Altura do obstáculo:</h6>
+                            </label>
+                            <input type="text" required class="form-control form-control-lg" id="sAltura" name="sAltura"
+                                placeholder="Digite a altura do obstáculo">
                         </div>
                     </div>
                     <br>
@@ -84,20 +94,20 @@
                     </div>
                     <br> --}}
                     <div class="row">
-                        <div class="col-6 myClass">
+{{!--                         <div class="col-6 myClass">
                             <label for="sAltura">
                                 <h6>Altura do obstáculo:</h6>
                             </label>
                             <input type="text" required class="form-control form-control-lg" id="sAltura" name="sAltura"
                                 placeholder="Digite a altura do obstáculo">
-                        </div>
-                        <div class="col-6 myClass">
+                        </div> --}}
+{{!--                         <div class="col-6 myClass">
                             <label for="limElev">
                                 <h6>Elevação mínima solar:</h6>
                             </label>
                             <input type="text" required class="form-control form-control-lg" id="limElev" name="limElev"
                                 placeholder="Digite a menor elevação a ser considerada">
-                        </div>
+                        </div> --}}
 {{!--                         <div class="col-4 myClass">
                             <label for="passo">
                                 <h6>Passo:</h6>
