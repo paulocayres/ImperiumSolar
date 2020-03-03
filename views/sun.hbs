@@ -173,10 +173,11 @@
     if (pathname == '/sun/sunpost'){
         document.getElementById('canvas').style.visibility = 'hidden';
         document.getElementById('logo').src = '../../imperium.png';
+        window.location.href = '/sun/sunget';
         //$('#sunModal').modal('show');
-        $('#sunModal').modal('toggle');
+       /* $('#sunModal').modal('toggle');
 
-         var i = 0;
+       var i = 0;
         setInterval( function(){
             i++;
             var texto = '';
@@ -188,7 +189,7 @@
         setTimeout(function(){
             window.location.href = '/sun/sunget';
         },
-         29000);
+         10000);*/
 
     } else if (pathname == '/sun' || pathname == '/sun/'){
         document.getElementById('canvas').style.visibility = 'hidden';

@@ -9,7 +9,7 @@ import * as Sun from 'suncalc';
 export class SunService {
 
     constructor(
-        @InjectModel('SunInput') private readonly sunModel: Model<SunInput>,
+        @InjectModel('SunInput') private sunModel: Model<SunInput>,
     ) { }
 
 
@@ -28,7 +28,9 @@ export class SunService {
         const sAltura = sunInputDto.sAltura;
         const limElev = sunInputDto.limElev;
         const passo = sunInputDto.passo;
-        let positions: SunInput[] = [];
+        let positions: SunInputDto[][] = [];
+        let contador: number = 0;
+        let positions_consolidada: Array<SunInputDto> = [];
         let sun: any;
         let nAzimute: number;
         let dir: number;
@@ -41,15 +43,21 @@ export class SunService {
         let sComprimento: string;
         let time: string;
 
+        // inicializando array multidimensional.
+        for (var i = 0; i <= 359; i++) {
+            positions.push([]);
+        }
+
+
         this.sunModel.collection.drop();
         while (times < dtf) {
             sun = Sun.getPosition(times, lati, longi);
             nAzimute = ((sun.azimuth * 180 / Math.PI)) + 180;
             dir = nAzimute + 180;
-            if (dir > 360) {
+            dir = (Math.round(dir));
+            if (dir >= 360) {
                 dir = dir - 360;
             }
-            dir = (Math.round(dir));
             azimute = (Math.round(nAzimute * 100) / 100).toString();
             nElevacao = (sun.altitude * 180 / Math.PI);
             elevacao = (Math.round(nElevacao * 100) / 100).toString();
@@ -59,8 +67,6 @@ export class SunService {
                 sDirecao = dir.toString();
                 sComprimento = (Math.round(comp * 100) / 100).toString();
                 time = times.toString();
-                // positions.push({ dataini, datafim, time, latitude, longitude, azimute, elevacao,_
-                // sComprimento, sDirecao, sAltura, limElev, passo });
                 sunInputDto = {
                     dataini, datafim, time,
                     latitude, longitude,
@@ -68,29 +74,43 @@ export class SunService {
                     sComprimento, sDirecao, sAltura,
                     limElev, passo, horaini, horafim,
                 };
-                positions.push(sunInputDto);
-/*                 const createdSun = new this.sunModel(sunInputDto);
-                await createdSun.save(); */
-
-                //this.sunModel.save(sunInputDto);
-                // createdSun.save(sunInput);
-                // createdSun.save();
+                positions[sDirecao].push(sunInputDto);
+                contador++
             }
             times.setMinutes(times.getMinutes() + parseFloat(passo));
-
         }
-        this.sunModel.insertMany(positions);
 
-        
+        for (var i = 0; i <= 359; i++) {
+                var pos = positions[i];
+                positions_consolidada[i] = pos[0];
+                for (var j = 1; j < pos.length; j++) {
+                        if (parseFloat(pos[j].sComprimento) > parseFloat(positions_consolidada[i].sComprimento)) {
+                            positions_consolidada[i] = pos[j];
+                        }
+                }
+        }
+
+        for (var i = 0; i <= 359; i++) {
+            if (positions_consolidada[i] === undefined){
+                Logger.log("Posição " + i + ": " + JSON.stringify(positions_consolidada[i]));
+                positions_consolidada[i]={
+                    dataini : "", datafim : "", time : "",
+                    latitude : "", longitude : "",
+                    azimute : "", elevacao : "",
+                    sComprimento : "", sDirecao : "", sAltura : "",
+                    limElev : "", passo : "", horaini : "", horafim : "",
+                }
+            }
+        }
+
+        this.sunModel.insertMany(positions_consolidada);
+
+
     }
-
-
 
     async getSunInputs(): Promise<any> {
         let positions: SunInput[] = [];
-        for (var i = 0; i <= 360; i++) {
-            positions.push( await this.sunModel.findOne({ sDirecao: i }).sort({ sComprimento: -1 }).exec())
-        }
+        positions = await this.sunModel.find();
         return positions;
     }
 
