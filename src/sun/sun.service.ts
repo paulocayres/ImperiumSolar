@@ -13,7 +13,7 @@ export class SunService {
     ) { }
 
 
-    setSunPositions(sunInputDto: SunInputDto) {
+    async setSunPositions(sunInputDto: SunInputDto) {
 
         const dataini = new Date(sunInputDto.dataini).toString();
         const times = new Date(sunInputDto.dataini);
@@ -103,7 +103,7 @@ export class SunService {
             }
         }
 
-        this.sunModel.insertMany(positions_consolidada);
+        await this.sunModel.insertMany(positions_consolidada);
 
 
     }
