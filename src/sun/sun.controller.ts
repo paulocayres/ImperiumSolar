@@ -1,7 +1,6 @@
 import { Controller, Get, Render, Post, Logger, Body, Param, Res, Redirect } from '@nestjs/common';
 import { SunService } from '../sun/sun.service';
 import { SunInputDto } from '../sun/suninput.dto';
-import { resolveSoa } from 'dns';
 
 @Controller('sun')
 export class SunController {

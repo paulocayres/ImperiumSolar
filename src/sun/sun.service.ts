@@ -5,6 +5,7 @@ import { SunInputDto } from '../sun/suninput.dto';
 import { Model } from 'mongoose';
 import * as Sun from 'suncalc';
 
+
 @Injectable()
 export class SunService {
 
