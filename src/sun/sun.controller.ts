@@ -28,6 +28,6 @@ export class SunController {
     @Post('sunpost')
     @Render('sun')
     async postSun(@Body() sunInput: SunInputDto) {
-        await this.sunService.setSunPositions(sunInput);
+        this.sunService.setSunPositions(sunInput);
     }
 }
