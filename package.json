@@ -4,6 +4,10 @@
   "description": "",
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": "12.16.0",
+    "npm": "6.13.7"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -72,4 +76,5 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
+  
 }
