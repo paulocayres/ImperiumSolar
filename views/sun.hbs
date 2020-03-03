@@ -188,8 +188,8 @@
     var pathname = window.location.pathname;
     
     if (pathname == '/sun/sunpost'){
-        document.getElementById('canvas').style.visibility = 'hidden';
-        window.location.href = '/sun/sunget';
+        document.getElementById('canvas').style.visibility = 'visible';
+        //window.location.href = '/sun/sunget';
         //$('#sunModal').modal('show');
         /* $('#sunModal').modal('toggle');
 
@@ -202,10 +202,10 @@
             1000
         ); */
 
-        setTimeout(function(){
+        /*setTimeout(function(){
             window.location.href = '/sun/sunget';
         },
-         1000);
+         1000);*/
 
     } else if (pathname == '/sun' || pathname == '/sun/'){
         document.getElementById('canvas').style.visibility = 'hidden';

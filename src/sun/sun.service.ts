@@ -14,7 +14,7 @@ export class SunService {
     ) { }
 
 
-    async setSunPositions(sunInputDto: SunInputDto) {
+    async setSunPositions(sunInputDto: SunInputDto): Promise<any> {
 
         const dataini = new Date(sunInputDto.dataini).toString();
         const times = new Date(sunInputDto.dataini);
@@ -105,6 +105,7 @@ export class SunService {
         }
 
         this.sunModel.insertMany(positions_consolidada);
+        return positions_consolidada;
 
 
     }

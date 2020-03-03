@@ -27,7 +27,8 @@ export class SunController {
 
     @Post('sunpost')
     @Render('sun')
-    async postSun(@Body() sunInput: SunInputDto) {
-        this.sunService.setSunPositions(sunInput);
+    async postSun(@Body() sunInput: SunInputDto): Promise<object> {
+        const retorno = await this.sunService.setSunPositions(sunInput);
+        return { sunArray: retorno }; 
     }
 }
