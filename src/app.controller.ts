@@ -1,4 +1,4 @@
-import { Controller, Get, Redirect } from '@nestjs/common';
+import { Controller, Get, Logger, Redirect } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -8,7 +8,7 @@ export class AppController {
   @Get()
   @Redirect('/sun')
   getHello(): string {
-
+    Logger.log("entrou na rota inicial");
     return '';
   }
 }

@@ -45,7 +45,7 @@ export class SunService {
         let time: string;
 
         // inicializando array multidimensional.
-        for (var i = 0; i <= 359; i++) {
+        for (let i = 0; i <= 359; i++) {
             positions.push([]);
         }
 
@@ -81,25 +81,25 @@ export class SunService {
             times.setMinutes(times.getMinutes() + parseFloat(passo));
         }
 
-        for (var i = 0; i <= 359 ; i++) {
-                var pos = positions[i];
-                positions_consolidada[i] = pos[0];
-                for (var j = 1; j < pos.length; j++) {
-                        if (parseFloat(pos[j].sComprimento) > parseFloat(positions_consolidada[i].sComprimento)) {
-                            positions_consolidada[i] = pos[j];
-                        }
+        for (let i = 0; i <= 359; i++) {
+            let pos = positions[i];
+            positions_consolidada[i] = pos[0];
+            for (let j = 1; j < pos.length; j++) {
+                if (parseFloat(pos[j].sComprimento) > parseFloat(positions_consolidada[i].sComprimento)) {
+                    positions_consolidada[i] = pos[j];
                 }
+            }
         }
 
-        for (var i = 0; i <= 359; i++) {
-            if (positions_consolidada[i] === undefined){
+        for (let i = 0; i <= 359; i++) {
+            if (positions_consolidada[i] === undefined) {
                 Logger.log("Posição " + i + ": " + JSON.stringify(positions_consolidada[i]));
-                positions_consolidada[i]={
-                    dataini : "", datafim : "", time : "",
-                    latitude : "", longitude : "",
-                    azimute : "", elevacao : "",
-                    sComprimento : "", sDirecao : "", sAltura : "",
-                    limElev : "", passo : "", horaini : "", horafim : "",
+                positions_consolidada[i] = {
+                    dataini: "", datafim: "", time: "",
+                    latitude: "", longitude: "",
+                    azimute: "", elevacao: "",
+                    sComprimento: "", sDirecao: "", sAltura: "",
+                    limElev: "", passo: "", horaini: "", horafim: "",
                 }
             }
         }

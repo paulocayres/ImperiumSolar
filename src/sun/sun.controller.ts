@@ -1,4 +1,4 @@
-import { Controller, Get, Render, Post, Logger, Body, Param, Res, Redirect } from '@nestjs/common';
+import { Controller, Get, Render, Post, Logger, Body } from '@nestjs/common';
 import { SunService } from '../sun/sun.service';
 import { SunInputDto } from '../sun/suninput.dto';
 
@@ -13,7 +13,8 @@ export class SunController {
     @Get()
     @Render('sun')
     async get() {
-            return '';
+        Logger.log("entrou na rota sun");
+        return '';
     }
 
     @Get('sunget')
