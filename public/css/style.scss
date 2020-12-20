@@ -4,6 +4,13 @@ p {
     color: $main-color;
 }
 
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+  }
+
 input::placeholder {
 	font-size: 0.8em;
 	font-style: italic;

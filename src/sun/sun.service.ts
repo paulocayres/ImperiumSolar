@@ -82,7 +82,7 @@ export class SunService {
         }
 
         for (let i = 0; i <= 359; i++) {
-            let pos = positions[i];
+            const pos = positions[i];
             positions_consolidada[i] = pos[0];
             for (let j = 1; j < pos.length; j++) {
                 if (parseFloat(pos[j].sComprimento) > parseFloat(positions_consolidada[i].sComprimento)) {
@@ -111,7 +111,7 @@ export class SunService {
     }
 
     async getSunInputs(): Promise<any> {
-        let positions: SunInput[] = [];
+        const positions: SunInput[] = [];
         //positions = await this.sunModel.find();
         return positions;
     }
