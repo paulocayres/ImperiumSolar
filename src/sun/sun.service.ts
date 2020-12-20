@@ -50,7 +50,7 @@ export class SunService {
         }
 
 
-        this.sunModel.collection.drop();
+        //this.sunModel.collection.drop();
         while (times < dtf) {
             sun = Sun.getPosition(times, lati, longi);
             nAzimute = ((sun.azimuth * 180 / Math.PI)) + 180;
@@ -104,7 +104,7 @@ export class SunService {
             }
         }
 
-        await this.sunModel.insertMany(positions_consolidada);
+        //await this.sunModel.insertMany(positions_consolidada);
         return positions_consolidada;
 
 
@@ -112,7 +112,7 @@ export class SunService {
 
     async getSunInputs(): Promise<any> {
         let positions: SunInput[] = [];
-        positions = await this.sunModel.find();
+        //positions = await this.sunModel.find();
         return positions;
     }
 
