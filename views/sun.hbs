@@ -24,7 +24,9 @@
                                 placeholder="Digite o passo em minutos para amostragem" value="1">
 
                     <input type="hidden" required class="form-control form-control-lg" id="limElev" name="limElev"
-                                placeholder="Digite a menor elevação a ser considerada" value="15">
+                                placeholder="Digite a menor elevação a ser considerada" value="10">
+                    <input type="hidden" required class="form-control form-control-lg" id="limElev" name="time"
+                                placeholder="Digite a menor elevação a ser considerada" value="0">
 {{!--                     <div class="row">
 
                         <div class="col-6 myClass">
@@ -129,6 +131,7 @@
         <div class="col-12">
             <div class="chartjs-wrapper">
                 <canvas id="chartjs-3" class="chartjs" width="500" height="500"></canvas>
+                <canvas id="chartjs-4" class="chartjs" width="500" height="500"></canvas>
             </div>
         </div>
     </div>
@@ -160,39 +163,74 @@
 
 
 
-
-
-
-
 <script>
-    new Chart(document.getElementById("chartjs-3"),
-        {
-            "type": "radar",
-            "data": {
-                "labels": [
-                    {{#each sunArray}}
-            "{{sDirecao}}",
+
+        var label = [
+            {{#each sunArray}}
+                {{sDirecao}},
             {{/each}}
-                    ],
-        "datasets": [
-            {
-                "label": "Sombreamento Solar",
-                "data": [
-                    {{#each sunArray}}
-            {{sComprimento}},
+        ];
+
+        var data = [
+            {{#each sunArray}}
+                {{sComprimento}},
             {{/each}}
-        ],
-        "fill": true,
-        "backgroundColor": "rgba(255, 99, 132, 0.2)",
-        "borderColor": "rgb(255, 99, 132)",
-        "pointBackgroundColor": "rgb(255, 99, 132)",
-        "pointBorderColor": "#fff",
-        "pointHoverBackgroundColor": "#fff",
-        "pointHoverBorderColor": "rgb(255, 99, 132)"
-                        }]
-                }, "options": { "elements": { "line": { "tension": 0, "borderWidth": 3 } } }
-            });
+        ];
+
+        var horario = [
+            {{#each sunArray}}
+                "{{time}}",
+            {{/each}}
+        ];
+
+    new Chart(document.getElementById("chartjs-3"),{
+            type: "radar",
+
+            data: {
+
+                labels: label,
+
+                datasets: [{
+
+                    label: "Sombreamento Solar",
+
+                    data:  data,
+
+                    horario: horario,
+
+                    "fill": true,
+                    "backgroundColor": "rgba(255, 99, 132, 0.2)",
+                    "borderColor": "rgb(255, 99, 132)",
+                    "pointBackgroundColor": "rgb(255, 99, 132)",
+                    "pointBorderColor": "#fff",
+                    "pointHoverBackgroundColor": "#fff",
+                    "pointHoverBorderColor": "rgb(255, 99, 132)"
+
+                }]
+            },
+            
+            options: {
+
+                tooltips: {
+                    callbacks: {
+                        title: function (tooltipItem, data) {
+                            return "Ângulo: " + data['labels'][tooltipItem[0]['index']];
+                        },
+                        label: function (tooltipItem, data) {
+                            return "Comprimento: " + data['datasets'][0]['data'][tooltipItem['index']];
+                        },
+                        afterLabel: function (tooltipItem, data) {
+                            return "Horário: " + data['datasets'][0]['horario'][tooltipItem['index']];
+                        }
+                    },
+                },
+                
+                elements: { line: { tension: 0, borderWidth: 3 } } }
+    });
 </script>
+
+
+
 
 <script>
     var pathname = window.location.pathname;

@@ -67,7 +67,7 @@ export class SunService {
                 comp = parseFloat(sAltura) / Math.tan(parseFloat(sun.altitude));
                 sDirecao = dir.toString();
                 sComprimento = (Math.round(comp * 100) / 100).toString();
-                time = times.toString();
+                time = times.getHours().toString() + ":" + times.getMinutes().toString();
                 sunInputDto = {
                     dataini, datafim, time,
                     latitude, longitude,
@@ -75,6 +75,8 @@ export class SunService {
                     sComprimento, sDirecao, sAltura,
                     limElev, passo, horaini, horafim,
                 };
+
+                
                 positions[sDirecao].push(sunInputDto);
                 contador++
             }
